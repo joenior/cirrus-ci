@@ -3,8 +3,8 @@ env:
     rcloneconfig: "ENCRYPTED[!d970e356e66a8798e097fef4b0a0b9a41e827b6468b9adf09fa21719b500f5cf72acab6868e2e486052f106a409238f8!]"
     tokentl: "ENCRYPTED[!4e08bfb6719cf11eebdf252ad46eaf68fac38aa7651339a3b02a6722e3abfe339067b751956226e858af133a0626305c!]"
     idtl: "ENCRYPTED[!ada2145d95983d2e2a41ae80fa27318da5a8980170db84992d9235c4dbcd190374eeeb76f47c815ab2ed55ddd087637d!]"
-    lunch: lunch qassa_sagit-user
-    make: make qassa
+    lunch: lunch qassa_X00T-userdebug
+    make: mka qassa
 
 task:
   name: "Setting Up, Syncing, Building and Uploading..."
