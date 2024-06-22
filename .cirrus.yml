@@ -1,8 +1,8 @@
 env:
-    credentials: "ENCRYPTED[!cfbfe2e2980e80f795fc4936a65a518896b7b9ef8ce8c95570cc5dafe8109b16a18f0217f1bb8bd540b427b3455bb634!]"
-    rcloneconfig: "ENCRYPTED[!d970e356e66a8798e097fef4b0a0b9a41e827b6468b9adf09fa21719b500f5cf72acab6868e2e486052f106a409238f8!]"
-    tokentl: "ENCRYPTED[!4e08bfb6719cf11eebdf252ad46eaf68fac38aa7651339a3b02a6722e3abfe339067b751956226e858af133a0626305c!]"
-    idtl: "ENCRYPTED[!ada2145d95983d2e2a41ae80fa27318da5a8980170db84992d9235c4dbcd190374eeeb76f47c815ab2ed55ddd087637d!]"
+    credentials: "ENCRYPTED[!c3721de1f3dbd0bb5c2be1990e2fd4219e9e42682a752774db3313d72a479b39d77409a805bee24ccac5cbb9af67c257!]"
+    rcloneconfig: "ENCRYPTED[!a44af054e45058ee410c59b2cd2d9021156b0087643d270b08cc0899b7e80d8c8c1b1d685bc7f2408abea5467f720dda!]"
+    tokentl: "ENCRYPTED[!b2d9bf2fde84d8f5f4ec62c7c5a283c3eb3ad6599df4f232901843dc5f99f8622842de7c091e39b534d7215b8063d381!]"
+    idtl: "ENCRYPTED[!e44213293d81b4a499d6005f2eaab4725c7cada1bccc7b562216ced8829f23c27346383e478de8896a81e98b6269bbc9!]"
     lunch: lunch qassa_X00T-userdebug
     make: mka qassa
 
@@ -41,7 +41,7 @@ task:
       - sudo curl --create-dirs -L -o /usr/local/bin/repoo -O -L https://storage.googleapis.com/git-repo-downloads/repo
       - sudo chmod a+rx /usr/local/bin/repoo
       - repo init -q --no-repo-verify --depth=1 -u https://github.com/keepQASSA/manifest.git -b Q -g default,-mips,-darwin,-notdefault
-      - git clone --depth 1 https://github.com/deny2311/local_manifest.git -b qassa-sagit .repo/local_manifests
+      - git clone --depth 1 https://github.com/Tiktodz/local_manifest.git -b qassa .repo/local_manifests
       - rm -rf .repo/repo && git clone https://gerrit.googlesource.com/git-repo .repo/repo
       - sed -i 's|ssh://git@github.com|https://github.com|g' .repo/manifests/snippets/qassa.xml
 #      - repoo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8 --fail-fast
@@ -50,10 +50,7 @@ task:
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Sync Completed!"
 
   Build_script:
-      - export BUILD_USERNAME="deny2311"
-      - export BUILD_HOSTNAME="deny"
-      - export KBUILD_BUILD_USER="deny2311"
-      - export KBUILD_BUILD_HOST="deny"
+      - export BUILD_USERNAME="queen"
 #      - export WITH_GAPPS=true
       - sudo ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build qassa for sagit Started!"
@@ -69,4 +66,3 @@ task:
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading ccache...."
       - rclone copy ccache.tar.gz sagit:qassa -P
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Ccache Uploaded Successfully!"
-
