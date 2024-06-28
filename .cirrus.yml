@@ -2,7 +2,7 @@ env:
     credentials: "ENCRYPTED[4f2ed4bc06ea9b13426d3c2b0a32d822540042f7e18eab0ab30efe538432dd1b2d06b90466747f0fd2d80bdd34375f3b]"
     rcloneconfig: "ENCRYPTED[ffc2eb881b5fc1c1c430af3667b0e0fd072bed775946f0f609652697acc32c0af32057583dc9cd5176dcc0171eb8e029]"
     tokentl: "ENCRYPTED[4831f48cbdfe4eb5e1638bab74422e6a4ae07d1daf9943f5e29d43687bbe9ee06751d71edb1ae64b6cd9f981181485db]"
-    idtl: "ENCRYPTED[e44213293d81b4a499d6005f2eaab4725c7cada1bccc7b562216ced8829f23c27346383e478de8896a81e98b6269bbc9]"
+    idtl: "ENCRYPTED[afb093bd1f612ab12b55788b0a587f92d746da13dd455eeebb800251caf0fd8a8c784d45ec73130bbdd4b14379f78a94]"
     lunch: lunch qassa_X00T-userdebug
     make: mka qassa
 
@@ -35,7 +35,7 @@ task:
       - ./w.sh
 
   Sync_script:
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Start sync qassa Source"
+      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="🔄 Start sync qassa Source"
       - mkdir -p ~/rom
       - cd ~/rom
       - sudo curl --create-dirs -L -o /usr/local/bin/repoo -O -L https://storage.googleapis.com/git-repo-downloads/repo
@@ -47,22 +47,22 @@ task:
 #      - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8 --fail-fast
       - repo sync -c -j8 --force-sync --no-clone-bundle --no-tags
       - sed -i 's| -u||g' vendor/qassa/config/branding.mk
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Sync Completed!"
+      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="✅ Sync Completed!"
 
   Build_script:
       - export BUILD_USERNAME="queen"
 #      - export WITH_GAPPS=true
       - sudo ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build qassa for X00T Started!"
+      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="🛠️ Build qassa for X00T Started!"
       - ./collect.sh
 #      - ./final.sh
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd ~/rom/out/target/product/X00T/ && ls qassa*.zip) Completed!"
+      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="✅ Build $(cd ~/rom/out/target/product/X00T/ && ls qassa*.zip) Completed!"
 
   Upload_script:
       - ./upload.sh
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Compres ccache"
+      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="✅ Compress ccache"
       - ./ziping.sh
       - cd ~/
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading ccache...."
+      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="📤 Uploading ccache...."
       - rclone copy ccache.tar.gz asus:qassa -P
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Ccache Uploaded Successfully!"
+      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="✅ Ccache Uploaded Successfully!"
