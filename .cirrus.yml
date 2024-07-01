@@ -2,9 +2,9 @@ env:
     credentials: "ENCRYPTED[4f2ed4bc06ea9b13426d3c2b0a32d822540042f7e18eab0ab30efe538432dd1b2d06b90466747f0fd2d80bdd34375f3b]"
     rcloneconfig: "ENCRYPTED[ffc2eb881b5fc1c1c430af3667b0e0fd072bed775946f0f609652697acc32c0af32057583dc9cd5176dcc0171eb8e029]"
     tokentl: "ENCRYPTED[4831f48cbdfe4eb5e1638bab74422e6a4ae07d1daf9943f5e29d43687bbe9ee06751d71edb1ae64b6cd9f981181485db]"
-    idtl: "ENCRYPTED[afb093bd1f612ab12b55788b0a587f92d746da13dd455eeebb800251caf0fd8a8c784d45ec73130bbdd4b14379f78a94]"
+    idtl: "ENCRYPTED[e44213293d81b4a499d6005f2eaab4725c7cada1bccc7b562216ced8829f23c27346383e478de8896a81e98b6269bbc9]"
     lunch: lunch lineage_X00T-userdebug
-    make: m bacon
+    make: mka bacon
 
 task:
   name: "Setting Up, Syncing, Building and Uploading..."
