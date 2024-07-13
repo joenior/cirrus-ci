@@ -3,8 +3,8 @@ env:
     rcloneconfig: "ENCRYPTED[ffc2eb881b5fc1c1c430af3667b0e0fd072bed775946f0f609652697acc32c0af32057583dc9cd5176dcc0171eb8e029]"
     tokentl: "ENCRYPTED[4831f48cbdfe4eb5e1638bab74422e6a4ae07d1daf9943f5e29d43687bbe9ee06751d71edb1ae64b6cd9f981181485db]"
     idtl: "ENCRYPTED[e44213293d81b4a499d6005f2eaab4725c7cada1bccc7b562216ced8829f23c27346383e478de8896a81e98b6269bbc9]"
-    lunch: lunch lineage_X00T-userdebug
-    make: mka bacon
+    lunch: lunch xdroid_X00TD-userdebug
+    make: mka xd
 
 task:
   name: "Setting Up, Syncing, Building and Uploading..."
@@ -23,7 +23,7 @@ task:
        - echo "$credentials" > ~/.git-credentials
        - git config --global credential.helper store --file=~/.git-credentials
        - mkdir -p ~/ccache
-       - rclone copy asus:lineage/ccache.tar.gz ~/ -P
+       - rclone copy asus:xdroid/ccache.tar.gz ~/ -P
        - cd ~/
        - time tar xf ccache.tar.gz
        - cd ~/
@@ -35,13 +35,13 @@ task:
       - ./w.sh
 
   Sync_script:
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="🔄 Start sync lineage-17.1 Source. . ."
+      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="🔄 Start sync xdroidCLO Source. . ."
       - mkdir -p ~/rom
       - cd ~/rom
       - sudo curl --create-dirs -L -o /usr/local/bin/repoo -O -L https://storage.googleapis.com/git-repo-downloads/repo
       - sudo chmod a+rx /usr/local/bin/repoo
-      - repo init --depth=1 -u https://github.com/lineageos/android.git -b lineage-17.1 -g default,-mips,-darwin,-notdefault
-      - git clone --depth=1 https://github.com/texascake/local_manifest.git -b lineage-17.1 .repo/local_manifests
+      - repo init --depth=1 -u https://github.com/xdCLO/xd_manifest -b eleven -g default,-mips,-darwin,-notdefault
+      - git clone --depth=1 https://github.com/texascake/local_manifest.git -b xd .repo/local_manifests
       - rm -rf .repo/repo && git clone https://gerrit.googlesource.com/git-repo .repo/repo
 #      - sed -i 's|ssh://git@github.com|https://github.com|g' .repo/manifests/snippets/qassa.xml
 #      - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8 --fail-fast
@@ -53,10 +53,10 @@ task:
       - export BUILD_USERNAME="queen"
 #      - export WITH_GAPPS=true
       - sudo ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="⏳ Build lineage-17.1 for X00T Started. . ."
+      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="⏳ Build xdroidCLO for X00TD Started. . ."
       - ./collect.sh
 #      - ./final.sh
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="✅ Build $(cd ~/rom/out/target/product/X00T/ && ls lineage-*.zip) Completed!"
+      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="✅ Build $(cd ~/rom/out/target/product/X00TD/ && ls xdroid_*.zip) Completed!"
 
   Upload_script:
       - ./upload.sh
@@ -64,5 +64,5 @@ task:
       - ./ziping.sh
       - cd ~/
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="📤 Uploading ccache...."
-      - rclone copy ccache.tar.gz asus:lineage -P
+      - rclone copy ccache.tar.gz asus:xdroid -P
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="✅ Ccache Uploaded Successfully!"
