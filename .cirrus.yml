@@ -3,7 +3,7 @@ env:
     rcloneconfig: "ENCRYPTED[ffc2eb881b5fc1c1c430af3667b0e0fd072bed775946f0f609652697acc32c0af32057583dc9cd5176dcc0171eb8e029]"
     tokentl: "ENCRYPTED[4831f48cbdfe4eb5e1638bab74422e6a4ae07d1daf9943f5e29d43687bbe9ee06751d71edb1ae64b6cd9f981181485db]"
     idtl: "ENCRYPTED[e44213293d81b4a499d6005f2eaab4725c7cada1bccc7b562216ced8829f23c27346383e478de8896a81e98b6269bbc9]"
-    lunch: lunch xdroid_X00TD-userdebug
+    lunch: lunch xdroid_X01BD-userdebug
     make: make xd
 
 task:
@@ -53,10 +53,10 @@ task:
       - export BUILD_USERNAME="queen"
 #      - export WITH_GAPPS=true
       - sudo ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="⏳ Build xdroidCLO for X00TD Started. . ."
+      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="⏳ Build xdroidCLO for X01BD Started. . ."
       - ./collect.sh
 #      - ./final.sh
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="✅ Build $(cd ~/rom/out/target/product/X00TD/ && ls xdCLO_*.zip) Completed!"
+      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="✅ Build $(cd ~/rom/out/target/product/X01BD/ && ls xdCLO_*.zip) Completed!"
 
   Upload_script:
       - ./upload.sh
