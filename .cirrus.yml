@@ -35,7 +35,7 @@ task:
       - ./w.sh
 
   Sync_script:
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="🔄 Start sync lineage-17.1 Source. . . </b> <a href=\"https://github.com/texascake/cirrus-ci/tree/lineage-17.1">Repository</a><b>"
+      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="🔄 Start sync lineage-17.1 Source. . ."
       - mkdir -p ~/rom
       - cd ~/rom
       - sudo curl --create-dirs -L -o /usr/local/bin/repoo -O -L https://storage.googleapis.com/git-repo-downloads/repo
@@ -53,7 +53,7 @@ task:
       - export BUILD_USERNAME="queen"
 #      - export WITH_GAPPS=true
       - sudo ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="⏳ Build lineage-17.1 for X00T Started. . .</b> <a href=\"https://cirrus-ci.com/github/texascake/cirrus-ci">Here</a><b>"
+      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="⏳ Build lineage-17.1 for X00T Started. . . build-log: https://cirrus-ci.com/github/texascake/cirrus-ci"
       - ./collect.sh
 #      - ./final.sh
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="✅ Build $(cd ~/rom/out/target/product/X00T/ && ls lineage-*.zip) Completed!"
