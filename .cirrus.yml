@@ -3,7 +3,7 @@ env:
     rcloneconfig: "ENCRYPTED[!851b47e66abf52f5090f87835fcddc0e22d07b5aa2b720835d58b48ff7c5d4eb3caf7788ce27b989ca771b291fc057c9!]"
     tokentl: "ENCRYPTED[4831f48cbdfe4eb5e1638bab74422e6a4ae07d1daf9943f5e29d43687bbe9ee06751d71edb1ae64b6cd9f981181485db]"
     idtl: "ENCRYPTED[e0f6a035b67c0c702245d7f49ae3a29c7cd548c1ec498ea7e323928954e7bb7e915a1d314e7ae812005fa77718c1827d]"
-    lunch: lunch nad_X00T-user
+    lunch: lunch nad_X00T-userdebug
     make: mka nad
 
 task:
@@ -43,10 +43,10 @@ task:
       - repo init -q --no-repo-verify --depth=1 -u https://github.com/S-A-build/android_manifest_nusa -b 10 -g default,-mips,-darwin,-notdefault
       - git clone --depth 1 https://github.com/texascake/local_manifest.git -b nad .repo/local_manifests
       - rm -rf .repo/repo && git clone https://gerrit.googlesource.com/git-repo .repo/repo
-#      - sed -i 's|ssh://git@github.com|https://github.com|g' .repo/manifests/snippets/qassa.xml
-#      - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8 --fail-fast
+      - sed -i 's|ssh://git@github.com|https://github.com|g' .repo/manifests/snippets/projects.xml
+#      - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
       - repo sync -c -j8 --force-sync --no-clone-bundle --no-tags
-#      - sed -i 's| -u||g' vendor/qassa/config/branding.mk
+      - sed -i 's| -u||g' vendor/nusantara/config/branding.mk
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="✅ Sync Completed!"
 
   Build_script:
